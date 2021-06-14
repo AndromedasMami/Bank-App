@@ -1,10 +1,12 @@
 const routes = {
   '/login': { 
     templateId: 'login',
+    //This is the login route title:
     title: 'Login'
   },
   '/dashboard': { 
     templateId: 'dashboard',
+    //This is the dashboard route title:
     title: 'Dashboard',
     init: refresh
   },
@@ -39,7 +41,7 @@ function updateRoute() {
     return navigate('/login');
   }
 
-  console.log(`ROUTE: ${route}`);
+  //console.log('ROUTE:', route);
 
   const template = document.getElementById(route.templateId);
   const view = template.content.cloneNode(true);
@@ -50,8 +52,8 @@ function updateRoute() {
   if (typeof route.init === 'function') {
     route.init();
   }
-
-  document.title = route.title;
+  //Set the document title to the title of the route:
+  document.title = route.title; 
 }
 
 function navigate(path) {
@@ -80,7 +82,6 @@ async function login() {
 
   updateState('account', data);
   navigate('/dashboard');
-  updateDashboard();
 }
 
 async function getAccount(user) {
@@ -140,7 +141,8 @@ async function createAccount(account) {
 
 function updateDashboard() {
   const account = state.account;
-  console.log("update dashboard: " + account);
+  //console.log(state);
+  //console.log(account);
   console.log("Dashboard is shown");
   if (!account) {
     return logout();
